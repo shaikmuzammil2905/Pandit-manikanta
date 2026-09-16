@@ -7,7 +7,7 @@ export const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-[85vh] sm:min-h-screen pt-24 sm:pt-28 pb-10 flex flex-col justify-between overflow-hidden bg-[#210308]">
       
-      {/* Animated Hero Background Picture - Shifted slightly leftwards (bg-[80%_center]) so all of Goddess Durga Devi is 100% visible */}
+      {/* Mobile-Only Hero Background Picture (image copy 26.png) - For < 1024px viewports */}
       <motion.div 
         initial={{ scale: 1, filter: 'brightness(1.1) contrast(1.05)' }}
         animate={{ 
@@ -23,12 +23,32 @@ export const Hero: React.FC = () => {
           repeat: Infinity, 
           ease: 'easeInOut' 
         }}
-        className="absolute inset-0 bg-cover bg-[85%_center] sm:bg-[82%_center] lg:bg-[78%_center] xl:bg-[75%_center] bg-no-repeat z-0"
+        className="block lg:hidden absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+        style={{ backgroundImage: `url('/assets/hero-bg-mobile.jpg')` }}
+      />
+
+      {/* Desktop-Only Hero Background Picture (image copy 12.png) - For >= 1024px viewports */}
+      <motion.div 
+        initial={{ scale: 1, filter: 'brightness(1.1) contrast(1.05)' }}
+        animate={{ 
+          scale: [1, 1.04, 1],
+          filter: [
+            'brightness(1.1) contrast(1.05)',
+            'brightness(1.2) contrast(1.1)',
+            'brightness(1.1) contrast(1.05)'
+          ]
+        }}
+        transition={{ 
+          duration: 16, 
+          repeat: Infinity, 
+          ease: 'easeInOut' 
+        }}
+        className="hidden lg:block absolute inset-0 bg-cover bg-[75%_center] bg-no-repeat z-0"
         style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
       />
 
       {/* Soft gradient overlay on left for text legibility while keeping right side (Goddess Durga) bright & clear */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#210308]/95 via-[#210308]/50 to-transparent z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#210308]/95 via-[#210308]/60 to-transparent z-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#210308] via-transparent to-transparent z-0 pointer-events-none" />
 
       {/* Radiant Floating Sparkle Glows */}
