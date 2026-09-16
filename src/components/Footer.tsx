@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MessageCircle } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -33,16 +34,25 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="#home" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Home</a>
+                <Link to="/" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Home Page</Link>
               </li>
               <li>
-                <a href="#about" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">About Us</a>
+                <Link to="/about" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">About Us</Link>
               </li>
               <li>
-                <a href="#services" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Services</a>
+                <Link to="/services" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">All Services</Link>
               </li>
               <li>
-                <a href="#contact" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Contact & Consultation</a>
+                <Link to="/why-choose-us" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Why Choose Us</Link>
+              </li>
+              <li>
+                <Link to="/reviews" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Devotee Reviews</Link>
+              </li>
+              <li>
+                <Link to="/astrologer" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Astrologer Manikanta</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-[#FFF8E8]/80 hover:text-[#F2C766] transition-colors">Contact & Consultation</Link>
               </li>
             </ul>
           </div>

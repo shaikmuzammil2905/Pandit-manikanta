@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { MessageCircle, Calendar, Sparkles, MapPin } from 'lucide-react';
 import { TrustStats } from './TrustStats';
 
@@ -15,13 +16,29 @@ export const Hero: React.FC = () => {
          ========================================================================= */}
       <div className="md:hidden relative w-full min-h-[calc(100vw*1.7768)] flex flex-col justify-between pt-20 pb-4 px-4 overflow-hidden">
         
-        {/* Dedicated Mobile Background Layer */}
+        {/* Dedicated Mobile Background Layer with Animation */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#210308]">
-          <img
+          <motion.img
             src="/assets/hero-bg-mobile.jpg"
             alt="Sri Kanaka Durga Devi Full Portrait"
-            className="w-full h-full object-fill object-center filter brightness-110 contrast-105 pointer-events-none"
+            initial={{ scale: 1, filter: 'brightness(1.1) contrast(1.05)' }}
+            animate={{ 
+              scale: [1, 1.05, 1],
+              filter: [
+                'brightness(1.1) contrast(1.05)',
+                'brightness(1.22) contrast(1.1)',
+                'brightness(1.1) contrast(1.05)'
+              ]
+            }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity, 
+              ease: 'easeInOut' 
+            }}
+            className="w-full h-full object-fill object-center pointer-events-none"
           />
+          {/* Radiant Glow Effect */}
+          <div className="absolute inset-0 bg-[#F2C766]/10 animate-pulse pointer-events-none" />
           {/* Layered Gradient Overlay: Dark behind top text and bottom buttons, transparent in center */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#210308]/90 via-transparent to-[#210308]/90 pointer-events-none" />
         </div>
@@ -76,13 +93,13 @@ export const Hero: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-row items-center justify-center gap-2.5 w-full max-w-sm">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#F2C766] via-[#D4A84F] to-[#B8860B] text-[#210308] font-black px-3 py-2.5 rounded-full shadow-xl shadow-[#D4A84F]/30 active:scale-95 transition-all text-xs text-center"
             >
               <Calendar className="w-3.5 h-3.5 text-[#210308] shrink-0" />
               <span>Book Consultation</span>
-            </a>
+            </Link>
             
             <a
               href="https://wa.me/919951597968"
@@ -174,13 +191,13 @@ export const Hero: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-4">
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F2C766] via-[#D4A84F] to-[#B8860B] text-[#210308] font-black px-8 py-4 rounded-full shadow-2xl shadow-[#D4A84F]/40 hover:scale-105 transition-all text-base"
                 >
                   <Calendar className="w-5 h-5 text-[#210308]" />
                   <span>Book a Consultation</span>
-                </a>
+                </Link>
                 
                 <a
                   href="https://wa.me/919951597968"

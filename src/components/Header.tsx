@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { MessageCircle, Menu, X, Phone, ChevronDown, User } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { MessageCircle, Menu, X, Phone, ChevronDown, User, Star, ShieldCheck } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 
 export const Header: React.FC = () => {
@@ -9,7 +9,6 @@ export const Header: React.FC = () => {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -24,41 +23,29 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
+  // Close drawers on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
     setMobileServicesOpen(false);
   }, [location.pathname]);
 
-  const handleNavClick = (href: string) => {
-    if (href.startsWith('/#')) {
-      const sectionId = href.replace('/#', '');
-      if (location.pathname !== '/') {
-        navigate('/', { state: { scrollTo: sectionId } });
-      } else {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      navigate(href);
-    }
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#3A0710]/95 backdrop-blur-md shadow-2xl border-b border-[#D4A84F]/40 py-2.5'
-          : 'bg-gradient-to-b from-[#210308]/95 via-[#210308]/60 to-transparent py-4'
+          : 'bg-gradient-to-b from-[#210308]/98 via-[#210308]/80 to-transparent py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo Brand */}
-          <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-            <div className="relative w-11 h-11 sm:w-13 sm:h-13 rounded-full p-0.5 bg-gradient-to-tr from-[#D4A84F] via-[#F2C766] to-[#650D16] shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <Link to="/" className="flex items-center gap-3 group focus:outline-none shrink-0">
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full p-0.5 bg-gradient-to-tr from-[#D4A84F] via-[#F2C766] to-[#650D16] shadow-lg group-hover:scale-105 transition-transform duration-300">
               <img
                 src="/assets/logo.png"
                 alt="Sri Kanaka Durga Devi Logo"
@@ -76,20 +63,24 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7">
-            <button
-              onClick={() => handleNavClick('/')}
-              className="text-sm font-medium text-[#FFF8E8]/90 hover:text-[#F2C766] transition-colors cursor-pointer py-1"
+          <nav className="hidden lg:flex items-center gap-6">
+            <Link
+              to="/"
+              className={`text-xs xl:text-sm font-semibold transition-colors py-1 ${
+                isActive('/') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+              }`}
             >
               Home
-            </button>
+            </Link>
 
-            <button
-              onClick={() => handleNavClick('/#about')}
-              className="text-sm font-medium text-[#FFF8E8]/90 hover:text-[#F2C766] transition-colors cursor-pointer py-1"
+            <Link
+              to="/about"
+              className={`text-xs xl:text-sm font-semibold transition-colors py-1 ${
+                isActive('/about') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+              }`}
             >
               About
-            </button>
+            </Link>
 
             {/* Services Dropdown with Related Thumbnails */}
             <div
@@ -97,20 +88,22 @@ export const Header: React.FC = () => {
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
             >
-              <button
-                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                className="flex items-center gap-1.5 text-sm font-medium text-[#FFF8E8]/90 hover:text-[#F2C766] transition-colors cursor-pointer"
+              <Link
+                to="/services"
+                className={`flex items-center gap-1 text-xs xl:text-sm font-semibold transition-colors ${
+                  location.pathname.startsWith('/services') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+                }`}
               >
                 <span>Services</span>
-                <ChevronDown className={`w-4 h-4 text-[#D4A84F] transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
+                <ChevronDown className={`w-3.5 h-3.5 text-[#D4A84F] transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+              </Link>
 
               {/* Dropdown Menu featuring Related Thumbnail Images */}
               {servicesDropdownOpen && (
                 <div className="absolute top-full left-0 w-80 bg-[#3A0710] border-2 border-[#D4A84F]/60 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in duration-200 z-50">
                   <div className="text-[11px] font-bold text-[#F2C766] uppercase tracking-wider px-3 py-1.5 mb-1 border-b border-[#D4A84F]/30 flex items-center justify-between">
                     <span>Astrological Services</span>
-                    <span className="text-[9px] text-[#D4A84F]">Click to view</span>
+                    <Link to="/services" className="text-[9px] text-[#D4A84F] underline">View All</Link>
                   </div>
                   <div className="flex flex-col gap-1.5 max-h-[75vh] overflow-y-auto pr-1">
                     {servicesData.map((svc) => (
@@ -120,7 +113,6 @@ export const Header: React.FC = () => {
                         onClick={() => setServicesDropdownOpen(false)}
                         className="flex items-center gap-3 px-2.5 py-2 rounded-xl text-xs font-semibold text-[#FFF8E8] hover:text-[#F2C766] hover:bg-[#650D16]/80 border border-transparent hover:border-[#D4A84F]/40 transition-all duration-200 group"
                       >
-                        {/* Related Thumbnail Image */}
                         <div className="w-9 h-9 rounded-lg overflow-hidden border border-[#D4A84F]/50 shrink-0 group-hover:scale-105 transition-transform bg-[#210308]">
                           <img
                             src={svc.image}
@@ -143,28 +135,50 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            {/* Pandit Astrologer Dedicated Page Link */}
+            <Link
+              to="/why-choose-us"
+              className={`text-xs xl:text-sm font-semibold transition-colors py-1 ${
+                isActive('/why-choose-us') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+              }`}
+            >
+              Why Choose Us
+            </Link>
+
+            <Link
+              to="/reviews"
+              className={`flex items-center gap-1 text-xs xl:text-sm font-semibold transition-colors py-1 ${
+                isActive('/reviews') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+              }`}
+            >
+              <Star className="w-3.5 h-3.5 text-[#F2C766] fill-[#F2C766]" />
+              <span>Reviews</span>
+            </Link>
+
             <Link
               to="/astrologer"
-              className="flex items-center gap-1.5 text-sm font-semibold text-[#F2C766] hover:text-white transition-colors py-1"
+              className={`flex items-center gap-1 text-xs xl:text-sm font-semibold py-1 ${
+                isActive('/astrologer') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#F2C766] hover:text-white'
+              }`}
             >
               <User className="w-4 h-4 text-[#F2C766]" />
               <span>Astrologer Manikanta</span>
             </Link>
 
-            <button
-              onClick={() => handleNavClick('/#contact')}
-              className="text-sm font-medium text-[#FFF8E8]/90 hover:text-[#F2C766] transition-colors cursor-pointer py-1"
+            <Link
+              to="/contact"
+              className={`text-xs xl:text-sm font-semibold transition-colors py-1 ${
+                isActive('/contact') ? 'text-[#F2C766] border-b-2 border-[#F2C766]' : 'text-[#FFF8E8]/90 hover:text-[#F2C766]'
+              }`}
             >
               Contact
-            </button>
+            </Link>
           </nav>
 
           {/* Right Action & WhatsApp Button */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:+919951597968"
-              className="flex items-center gap-2 text-xs font-semibold text-[#D4A84F] border border-[#D4A84F]/40 px-3 py-2 rounded-full hover:bg-[#D4A84F]/10 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-semibold text-[#D4A84F] border border-[#D4A84F]/40 px-3 py-1.5 rounded-full hover:bg-[#D4A84F]/10 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[#F2C766]" />
               <span>+91 9951597968</span>
@@ -173,15 +187,15 @@ export const Header: React.FC = () => {
               href="https://wa.me/919951597968"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 transition-all duration-300"
+              className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white px-3.5 py-1.5 rounded-full font-bold text-xs shadow-lg hover:shadow-green-500/20 hover:scale-105 transition-all duration-300"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
-              <span>WhatsApp Us</span>
+              <span>WhatsApp</span>
             </a>
           </div>
 
           {/* Mobile Hamburger & WhatsApp Button */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-2.5">
             <a
               href="https://wa.me/919951597968"
               target="_blank"
@@ -189,50 +203,65 @@ export const Header: React.FC = () => {
               className="p-2 bg-[#25D366] rounded-full text-white shadow-md hover:scale-105 transition-transform"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-5 h-5 fill-white" />
+              <MessageCircle className="w-4 h-4 fill-white" />
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#F2C766] hover:text-white rounded-lg focus:outline-none"
+              className="p-1.5 text-[#F2C766] hover:text-white rounded-lg focus:outline-none border border-[#D4A84F]/40"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer Menu with Thumbnails */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#210308]/98 backdrop-blur-2xl border-b border-[#D4A84F]/40 px-5 pt-4 pb-6 shadow-2xl animate-in slide-in-from-top duration-300 max-h-[85vh] overflow-y-auto">
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={() => handleNavClick('/')}
-              className="text-left text-base font-semibold text-[#FFF8E8] hover:text-[#F2C766] py-2 border-b border-[#3A0710]"
+          <div className="flex flex-col gap-2.5">
+            
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-left text-base font-semibold py-2 border-b border-[#3A0710] ${
+                isActive('/') ? 'text-[#F2C766]' : 'text-[#FFF8E8]'
+              }`}
             >
-              Home
-            </button>
+              Home Page
+            </Link>
 
-            <button
-              onClick={() => handleNavClick('/#about')}
-              className="text-left text-base font-semibold text-[#FFF8E8] hover:text-[#F2C766] py-2 border-b border-[#3A0710]"
+            <Link
+              to="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-left text-base font-semibold py-2 border-b border-[#3A0710] ${
+                isActive('/about') ? 'text-[#F2C766]' : 'text-[#FFF8E8]'
+              }`}
             >
               About Us
-            </button>
+            </Link>
 
             {/* Mobile Services Accordion with Thumbnails */}
             <div className="border-b border-[#3A0710] py-2">
-              <button
-                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="w-full flex items-center justify-between text-base font-semibold text-[#F2C766]"
-              >
-                <span>Our Services</span>
-                <ChevronDown className={`w-5 h-5 text-[#F2C766] transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-              </button>
+              <div className="flex items-center justify-between">
+                <Link
+                  to="/services"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-base font-semibold text-[#F2C766]"
+                >
+                  Our Services (7)
+                </Link>
+                <button
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="p-1 text-[#F2C766]"
+                >
+                  <ChevronDown className={`w-5 h-5 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
 
               {mobileServicesOpen && (
-                <div className="mt-3 pl-2 flex flex-col gap-2.5 border-l-2 border-[#D4A84F]">
+                <div className="mt-3 pl-2 flex flex-col gap-2 border-l-2 border-[#D4A84F]">
                   {servicesData.map((svc) => (
                     <Link
                       key={svc.id}
@@ -245,7 +274,7 @@ export const Header: React.FC = () => {
                         alt={svc.title}
                         className="w-8 h-8 rounded-md object-cover border border-[#D4A84F]"
                       />
-                      <span className="text-sm font-medium text-[#FFF8E8] hover:text-[#F2C766]">
+                      <span className="text-xs font-medium text-[#FFF8E8] hover:text-[#F2C766]">
                         {svc.title}
                       </span>
                     </Link>
@@ -253,6 +282,27 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
+
+            <Link
+              to="/why-choose-us"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-left text-base font-semibold py-2 border-b border-[#3A0710] ${
+                isActive('/why-choose-us') ? 'text-[#F2C766]' : 'text-[#FFF8E8]'
+              }`}
+            >
+              Why Choose Us
+            </Link>
+
+            <Link
+              to="/reviews"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-left text-base font-semibold py-2 border-b border-[#3A0710] flex items-center gap-2 ${
+                isActive('/reviews') ? 'text-[#F2C766]' : 'text-[#FFF8E8]'
+              }`}
+            >
+              <Star className="w-4 h-4 text-[#F2C766] fill-[#F2C766]" />
+              <span>Customer Reviews & Feedback</span>
+            </Link>
 
             <Link
               to="/astrologer"
@@ -263,12 +313,15 @@ export const Header: React.FC = () => {
               <span>Astrologer Manikanta</span>
             </Link>
 
-            <button
-              onClick={() => handleNavClick('/#contact')}
-              className="text-left text-base font-semibold text-[#FFF8E8] hover:text-[#F2C766] py-2 border-b border-[#3A0710]"
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-left text-base font-semibold py-2 border-b border-[#3A0710] ${
+                isActive('/contact') ? 'text-[#F2C766]' : 'text-[#FFF8E8]'
+              }`}
             >
-              Contact
-            </button>
+              Contact & Consultation
+            </Link>
 
             <div className="flex flex-col gap-3 pt-3">
               <a

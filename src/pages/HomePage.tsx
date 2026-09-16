@@ -6,6 +6,7 @@ import { About } from '../components/About';
 import { MeetAstrologer } from '../components/MeetAstrologer';
 import { Services } from '../components/Services';
 import { WhyChooseUs } from '../components/WhyChooseUs';
+import { Reviews } from '../components/Reviews';
 import { ConsultationCTA } from '../components/ConsultationCTA';
 import { ContactSection } from '../components/ContactSection';
 import { Footer } from '../components/Footer';
@@ -22,6 +23,8 @@ export const HomePage: React.FC = () => {
         const el = document.getElementById(sectionId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }, 100);
+    } else {
+      window.scrollTo(0, 0);
     }
   }, [location]);
 
@@ -34,6 +37,7 @@ export const HomePage: React.FC = () => {
         <MeetAstrologer />
         <Services />
         <WhyChooseUs />
+        <Reviews />
         <ConsultationCTA />
         <ContactSection />
       </main>
@@ -43,3 +47,5 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+
+export default HomePage;
