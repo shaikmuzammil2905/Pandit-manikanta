@@ -32,7 +32,7 @@ export const WhyChooseUs: React.FC = () => {
             Your Trusted Spiritual Guide
           </h2>
           <p className="text-base sm:text-lg text-[#210308]/80 font-medium">
-            Click any pillar to view detailed information & pictorial representation
+            Click any pillar to view detailed information & guidance
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export const WhyChooseUs: React.FC = () => {
 
       </div>
 
-      {/* Interactive Pictorial Popup Modal (referenced by image copy 9.png) */}
+      {/* Clean Text-Only Popup Modal without header picture (as requested in image copy 25.png) */}
       <AnimatePresence>
         {selectedPoint && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -87,13 +87,14 @@ export const WhyChooseUs: React.FC = () => {
               className="fixed inset-0 bg-[#210308]/85 backdrop-blur-md"
             />
 
-            {/* Modal Content Window */}
+            {/* Modal Window: Clean Text & Content Only */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              className="relative w-full max-w-lg bg-[#3A0710] border-2 border-[#F2C766] rounded-3xl p-6 text-[#FFF8E8] shadow-2xl z-10 my-8 overflow-hidden gold-glow"
+              className="relative w-full max-w-lg bg-[#3A0710] border-2 border-[#F2C766] rounded-3xl p-6 sm:p-8 text-[#FFF8E8] shadow-2xl z-10 my-8 overflow-hidden gold-glow"
             >
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedPoint(null)}
                 className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#210308]/80 text-[#F2C766] hover:bg-[#650D16] transition-colors"
@@ -102,25 +103,22 @@ export const WhyChooseUs: React.FC = () => {
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Pictorial Representation Header Image */}
-              <div className="relative h-48 sm:h-56 -mx-6 -mt-6 mb-6 overflow-hidden rounded-t-3xl border-b-2 border-[#D4A84F]">
-                <img
-                  src={selectedPoint.image}
-                  alt={selectedPoint.title}
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3A0710] via-[#3A0710]/40 to-transparent" />
-                <div className="absolute bottom-3 left-6 right-6">
-                  <span className="text-xs font-bold text-[#F2C766] uppercase tracking-widest block mb-1">
-                    Why Choose Us
-                  </span>
-                  <h3 className="font-cinzel text-2xl font-extrabold text-white">
-                    {selectedPoint.title}
-                  </h3>
-                </div>
+              {/* Title Header */}
+              <div className="mb-4 pr-8">
+                <span className="text-xs font-bold text-[#F2C766] uppercase tracking-widest block mb-1">
+                  Why Choose Sri Kanaka Durga Devi Astrology
+                </span>
+                <h3 className="font-cinzel text-2xl font-extrabold text-[#FFF8E8]">
+                  {selectedPoint.title}
+                </h3>
               </div>
 
-              {/* Detailed Description */}
+              {/* Short Summary Highlight */}
+              <p className="text-sm font-semibold text-[#F2C766] bg-[#650D16]/60 p-3.5 rounded-xl border-l-4 border-[#F2C766] mb-5">
+                "{selectedPoint.shortDesc}"
+              </p>
+
+              {/* Full Description Content */}
               <p className="text-sm sm:text-base text-[#FFF8E8]/90 leading-relaxed mb-6 font-normal">
                 {selectedPoint.fullDesc}
               </p>
@@ -131,7 +129,7 @@ export const WhyChooseUs: React.FC = () => {
                   href="https://wa.me/919951597968"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-3 rounded-xl shadow-md text-sm"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3 rounded-xl shadow-md text-sm"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>WhatsApp Us</span>

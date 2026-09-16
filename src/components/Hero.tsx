@@ -7,18 +7,33 @@ export const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-[85vh] sm:min-h-screen pt-24 sm:pt-28 pb-10 flex flex-col justify-between overflow-hidden bg-[#210308]">
       
-      {/* Hero Background Picture (image copy 12.png) - Luminous & Clearly Visible with Goddess Durga Devi */}
-      <div 
-        className="absolute inset-0 bg-cover bg-right lg:bg-center bg-no-repeat z-0 filter brightness-110 contrast-105"
+      {/* Animated Hero Background Picture (image copy 15.png) */}
+      <motion.div 
+        initial={{ scale: 1, filter: 'brightness(1.1) contrast(1.05)' }}
+        animate={{ 
+          scale: [1, 1.05, 1],
+          filter: [
+            'brightness(1.1) contrast(1.05)',
+            'brightness(1.2) contrast(1.1)',
+            'brightness(1.1) contrast(1.05)'
+          ]
+        }}
+        transition={{ 
+          duration: 16, 
+          repeat: Infinity, 
+          ease: 'easeInOut' 
+        }}
+        className="absolute inset-0 bg-cover bg-right lg:bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
       />
 
-      {/* Soft gradient overlay on left for text legibility while leaving right side (Goddess Durga) bright & clear */}
+      {/* Soft gradient overlay on left for text legibility while keeping right side (Goddess Durga) bright & clear */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#210308]/90 via-[#210308]/60 to-transparent z-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#210308] via-transparent to-transparent z-0 pointer-events-none" />
 
-      {/* Soft Glow */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#F2C766]/15 rounded-full filter blur-3xl animate-pulse-glow pointer-events-none z-0" />
+      {/* Radiant Floating Sparkle Glows */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#F2C766]/20 rounded-full filter blur-3xl animate-pulse-glow pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#650D16]/30 rounded-full filter blur-3xl pointer-events-none z-0" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-8 z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
