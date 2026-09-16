@@ -5,22 +5,25 @@ import { TrustStats } from './TrustStats';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen pt-24 sm:pt-28 pb-12 flex flex-col justify-between overflow-hidden bg-[#3A0710]">
+    <section id="home" className="relative min-h-[85vh] sm:min-h-screen pt-24 sm:pt-28 pb-10 flex flex-col justify-between overflow-hidden bg-[#210308]">
       
-      {/* Hero Background Picture - Bright, Luminous, No Heavy Dark Shadows */}
+      {/* Hero Background Picture (image copy 12.png) - Luminous & Clearly Visible with Goddess Durga Devi */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 filter brightness-125 contrast-105 saturate-110"
+        className="absolute inset-0 bg-cover bg-right lg:bg-center bg-no-repeat z-0 filter brightness-110 contrast-105"
         style={{ backgroundImage: `url('/assets/hero-bg.jpg')` }}
       />
 
-      {/* Subtle Golden Glow for Radiance instead of dark shadows */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#3A0710]/40 via-transparent to-[#3A0710]/30 z-0 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#F2C766]/20 rounded-full filter blur-3xl animate-pulse-glow pointer-events-none z-0" />
+      {/* Soft gradient overlay on left for text legibility while leaving right side (Goddess Durga) bright & clear */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#210308]/90 via-[#210308]/60 to-transparent z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#210308] via-transparent to-transparent z-0 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      {/* Soft Glow */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#F2C766]/15 rounded-full filter blur-3xl animate-pulse-glow pointer-events-none z-0" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-8 z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Left Column: Hero Copy & Actions (lg:col-span-7) */}
+          {/* Left Column: Hero Content & CTAs (lg:col-span-7) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -28,7 +31,7 @@ export const Hero: React.FC = () => {
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3A0710]/95 border-2 border-[#F2C766] shadow-xl mb-6 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3A0710]/95 border border-[#F2C766] shadow-xl mb-6 backdrop-blur-md">
               <Sparkles className="w-4 h-4 text-[#F2C766]" />
               <span className="text-xs sm:text-sm font-extrabold tracking-wider text-[#F2C766] uppercase">
                 15 Years of Spiritual Guidance
@@ -52,13 +55,13 @@ export const Hero: React.FC = () => {
             </p>
 
             {/* Location Tag */}
-            <div className="flex items-center gap-2 text-sm text-[#F2C766] font-bold mb-8 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] bg-[#3A0710]/90 px-3.5 py-1.5 rounded-full border border-[#D4A84F]">
+            <div className="flex items-center gap-2 text-sm text-[#F2C766] font-bold mb-8 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] bg-[#3A0710]/90 px-4 py-1.5 rounded-full border border-[#D4A84F]">
               <MapPin className="w-4 h-4 text-[#F2C766]" />
               <span>Hyderabad, Telangana, India</span>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-4">
               <a
                 href="#contact"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F2C766] via-[#D4A84F] to-[#B8860B] text-[#210308] font-black px-8 py-4 rounded-full shadow-2xl shadow-[#D4A84F]/40 hover:scale-105 transition-all text-base"
@@ -79,47 +82,8 @@ export const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Grand Pandit Portrait (lg:col-span-5) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center items-center z-10 w-full"
-          >
-            <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full">
-              
-              {/* Divine Bright Halo */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#F2C766]/50 via-[#D4A84F]/40 to-[#650D16]/40 rounded-3xl filter blur-2xl transform scale-105 animate-pulse-glow" />
-
-              {/* Ornamental Frame Container */}
-              <div className="relative rounded-2xl p-1.5 bg-gradient-to-b from-[#F2C766] via-[#D4A84F] to-[#3A0710] shadow-2xl gold-glow">
-                <div className="relative rounded-xl overflow-hidden bg-[#210308] border border-[#D4A84F]/50">
-                  
-                  {/* Pandit Portrait Image */}
-                  <img
-                    src="/assets/pandit-grand.jpg"
-                    alt="Astrologer Manikanta"
-                    className="w-full h-[390px] sm:h-[460px] lg:h-[490px] object-cover object-top hover:scale-102 transition-transform duration-700"
-                  />
-
-                  {/* Gradient Overlay at base */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#210308] via-transparent to-transparent opacity-75" />
-
-                  {/* Pandit Name Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-[#3A0710]/95 backdrop-blur-md border border-[#D4A84F] p-3 rounded-xl text-center shadow-2xl">
-                    <span className="block font-cinzel font-bold text-base sm:text-lg text-[#F2C766]">
-                      Astrologer Manikanta
-                    </span>
-                    <span className="block text-xs text-[#FFF8E8]/90 font-medium">
-                      15 Years of Experienced Spiritual Guidance
-                    </span>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
+          {/* Right Column (lg:col-span-5) - Leaves Goddess Durga Devi background clearly visible */}
+          <div className="hidden lg:block lg:col-span-5 min-h-[350px]" />
 
         </div>
       </div>
