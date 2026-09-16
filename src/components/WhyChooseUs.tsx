@@ -1,35 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, UserCheck, MapPin, Lock, Layers, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Award, UserCheck, MapPin, Lock, Layers, Sparkles, X, Phone, MessageCircle, ArrowRight } from 'lucide-react';
+import { whyChooseData } from '../data/servicesData';
+import { WhyChoosePoint } from '../types';
+
+const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  Award,
+  UserCheck,
+  MapPin,
+  Lock,
+  Layers,
+};
 
 export const WhyChooseUs: React.FC = () => {
-  const points = [
-    {
-      icon: Award,
-      title: '15 Years Experience',
-      desc: 'With 15 years of trusted guidance serving people across Hyderabad.',
-    },
-    {
-      icon: UserCheck,
-      title: 'Personal Consultation',
-      desc: 'Respectful and focused attention devoted to your unique concerns.',
-    },
-    {
-      icon: MapPin,
-      title: 'Hyderabad Based',
-      desc: 'Conveniently accessible for individuals and families in and around Hyderabad.',
-    },
-    {
-      icon: Lock,
-      title: 'Confidential Conversations',
-      desc: 'Your privacy, trust, and sensitive matters are completely safe with us.',
-    },
-    {
-      icon: Layers,
-      title: 'Guidance for Different Life Concerns',
-      desc: 'Solutions and remedies across love, marriage, health, legal, and family issues.',
-    },
-  ];
+  const [selectedPoint, setSelectedPoint] = useState<WhyChoosePoint | null>(null);
 
   return (
     <section className="py-16 sm:py-24 bg-[#FFF8E8] text-[#210308] relative overflow-hidden">
@@ -48,38 +32,125 @@ export const WhyChooseUs: React.FC = () => {
             Your Trusted Spiritual Guide
           </h2>
           <p className="text-base sm:text-lg text-[#210308]/80 font-medium">
-            Dedicated to helping individuals find peace, clarity, and remedies
+            Click any pillar to view detailed information & pictorial representation
           </p>
         </div>
 
         {/* 5 Points Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {points.map((pt, idx) => {
-            const Icon = pt.icon;
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {whyChooseData.map((pt, idx) => {
+            const IconComponent = iconMap[pt.iconName] || Sparkles;
             return (
               <motion.div
-                key={pt.title}
+                key={pt.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white p-6 rounded-2xl border border-[#D4A84F]/30 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group"
+                onClick={() => setSelectedPoint(pt)}
+                className="bg-white p-6 rounded-2xl border border-[#D4A84F]/40 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between items-center text-center cursor-pointer group"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#FFF8E8] border border-[#D4A84F] flex items-center justify-center mb-4 group-hover:bg-[#3A0710] transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-[#650D16] group-hover:text-[#F2C766] transition-colors duration-300" />
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 rounded-2xl bg-[#FFF8E8] border-2 border-[#D4A84F] flex items-center justify-center mb-4 group-hover:bg-[#3A0710] group-hover:border-[#F2C766] transition-all duration-300">
+                    <IconComponent className="w-7 h-7 text-[#650D16] group-hover:text-[#F2C766] transition-colors duration-300" />
+                  </div>
+                  <h3 className="font-cinzel font-bold text-base text-[#3A0710] mb-2 leading-snug group-hover:text-[#650D16] transition-colors">
+                    {pt.title}
+                  </h3>
+                  <p className="text-xs text-[#210308]/75 leading-relaxed mb-4">
+                    {pt.shortDesc}
+                  </p>
                 </div>
-                <h3 className="font-cinzel font-bold text-base text-[#3A0710] mb-2 leading-snug">
-                  {pt.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#210308]/75 leading-relaxed">
-                  {pt.desc}
-                </p>
+
+                <div className="inline-flex items-center gap-1 text-xs font-bold text-[#650D16] group-hover:text-[#3A0710]">
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
               </motion.div>
             );
           })}
         </div>
 
       </div>
+
+      {/* Interactive Pictorial Popup Modal (referenced by image copy 9.png) */}
+      <AnimatePresence>
+        {selectedPoint && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedPoint(null)}
+              className="fixed inset-0 bg-[#210308]/85 backdrop-blur-md"
+            />
+
+            {/* Modal Content Window */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              className="relative w-full max-w-lg bg-[#3A0710] border-2 border-[#F2C766] rounded-3xl p-6 text-[#FFF8E8] shadow-2xl z-10 my-8 overflow-hidden gold-glow"
+            >
+              <button
+                onClick={() => setSelectedPoint(null)}
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#210308]/80 text-[#F2C766] hover:bg-[#650D16] transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Pictorial Representation Header Image */}
+              <div className="relative h-48 sm:h-56 -mx-6 -mt-6 mb-6 overflow-hidden rounded-t-3xl border-b-2 border-[#D4A84F]">
+                <img
+                  src={selectedPoint.image}
+                  alt={selectedPoint.title}
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3A0710] via-[#3A0710]/40 to-transparent" />
+                <div className="absolute bottom-3 left-6 right-6">
+                  <span className="text-xs font-bold text-[#F2C766] uppercase tracking-widest block mb-1">
+                    Why Choose Us
+                  </span>
+                  <h3 className="font-cinzel text-2xl font-extrabold text-white">
+                    {selectedPoint.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Detailed Description */}
+              <p className="text-sm sm:text-base text-[#FFF8E8]/90 leading-relaxed mb-6 font-normal">
+                {selectedPoint.fullDesc}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#D4A84F]/30">
+                <a
+                  href="https://wa.me/919951597968"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-3 rounded-xl shadow-md text-sm"
+                >
+                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <span>WhatsApp Us</span>
+                </a>
+
+                <a
+                  href="tel:+919951597968"
+                  className="flex-1 flex items-center justify-center gap-2 border border-[#D4A84F] text-[#F2C766] font-bold py-3 rounded-xl hover:bg-[#D4A84F]/10 text-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Call Now</span>
+                </a>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 };

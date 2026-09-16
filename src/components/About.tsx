@@ -12,7 +12,7 @@ export const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: South Indian Temple Visual (lg:col-span-5) */}
+          {/* Left Column: Grand Picture from image copy 4.png (lg:col-span-5) */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -21,26 +21,26 @@ export const About: React.FC = () => {
             className="lg:col-span-5 flex justify-center"
           >
             <div className="relative w-full max-w-md group">
-              {/* Outer Decorative Frame */}
-              <div className="absolute -inset-3 rounded-2xl bg-gradient-to-tr from-[#D4A84F]/40 via-[#650D16]/20 to-[#D4A84F]/40 transform rotate-1 group-hover:rotate-0 transition-transform duration-500" />
+              {/* Gold Outer Frame */}
+              <div className="absolute -inset-3 rounded-2xl bg-gradient-to-tr from-[#D4A84F] via-[#650D16] to-[#F2C766] transform rotate-1 group-hover:rotate-0 transition-transform duration-500 shadow-xl" />
               
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-[#D4A84F]">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-[#D4A84F] bg-[#210308]">
                 <img
-                  src="/assets/temple-about.jpg"
-                  alt="South Indian Temple - Sri Kanaka Durga Devi Astrology"
-                  className="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  src="/assets/about-grand.jpg"
+                  alt="Sri Kanaka Durga Devi Astrology Temple & Devotional Sanctuary"
+                  className="w-full h-[370px] sm:h-[430px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#210308]/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#210308]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-center">
-                  <span className="font-cinzel text-sm sm:text-base font-semibold text-[#F2C766] tracking-wide">
-                    Spiritual Haven & Devotional Legacy
+                  <span className="font-cinzel text-sm sm:text-base font-bold text-[#F2C766] tracking-wide block">
+                    Divine Temple Guidance & Spiritual Sanctuary
                   </span>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: About Content (lg:col-span-7) */}
+          {/* Right Column: About Narrative (lg:col-span-7) */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -62,16 +62,16 @@ export const About: React.FC = () => {
             </h2>
 
             {/* Paragraphs */}
-            <p className="text-base sm:text-lg text-[#210308]/85 mb-4 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#210308]/90 mb-4 leading-relaxed font-normal">
               Sri Kanaka Durga Devi Astrology is dedicated to helping people who are facing problems in their life. With <strong>15 years of experience</strong>, we provide spiritual and astrological guidance to bring peace, clarity, and positive direction.
             </p>
 
-            <p className="text-base sm:text-lg text-[#210308]/85 mb-6 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#210308]/90 mb-6 leading-relaxed font-normal">
               Whether it's about relationships, health, marriage, career or any other concern, we are here to support you with dedicated and sincere guidance based on traditional astrological principles.
             </p>
 
-            {/* Vision Highlight */}
-            <div className="w-full bg-[#3A0710] text-[#FFF8E8] p-5 sm:p-6 rounded-2xl border-l-4 border-[#D4A84F] mb-8 shadow-md">
+            {/* Core Vision Banner */}
+            <div className="w-full bg-[#3A0710] text-[#FFF8E8] p-5 sm:p-6 rounded-2xl border-l-4 border-[#D4A84F] mb-8 shadow-lg">
               <span className="block text-xs uppercase tracking-widest text-[#F2C766] mb-1 font-semibold">
                 Our Core Vision
               </span>
@@ -80,10 +80,10 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* Know More CTA */}
+            {/* Know More Action */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 bg-[#3A0710] hover:bg-[#650D16] text-[#FFF8E8] font-bold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base group"
+              className="inline-flex items-center gap-2.5 bg-[#3A0710] hover:bg-[#650D16] text-[#FFF8E8] font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all text-base group"
             >
               <span>Know More & Connect</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-[#F2C766]" />

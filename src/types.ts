@@ -5,6 +5,16 @@ export interface ServiceItem {
   fullDesc: string;
   iconName: string;
   benefits: string[];
+  image: string;
+}
+
+export interface WhyChoosePoint {
+  id: string;
+  title: string;
+  shortDesc: string;
+  fullDesc: string;
+  iconName: string;
+  image: string;
 }
 
 export interface ConsultationFormData {
