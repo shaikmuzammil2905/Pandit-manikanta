@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Flame, 
-  HeartPulse, 
-  Heart, 
   Sparkles, 
-  Scale, 
-  ShieldAlert, 
-  Users, 
   ArrowRight, 
   MessageCircle 
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { ServiceItem } from '../types';
 import { ServiceModal } from './ServiceModal';
-
-const iconMap: Record<string, React.FC<{ className?: string }>> = {
-  Flame,
-  HeartPulse,
-  Heart,
-  Ring: Sparkles,
-  Scale,
-  ShieldAlert,
-  Users,
-};
+import { Link } from 'react-router-dom';
 
 export const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
@@ -49,14 +34,13 @@ export const Services: React.FC = () => {
             Services We Offer
           </h2>
           <p className="text-base sm:text-lg text-[#FFF8E8]/80 font-medium">
-            Specialized solutions for your life's challenges based on 15 years of experience
+            Specialized solutions with rich pictorial guidance for your life's challenges
           </p>
         </div>
 
-        {/* 7 Services Grid */}
+        {/* 7 Services Grid with Related Thumbnails */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {servicesData.map((service, idx) => {
-            const IconComponent = iconMap[service.iconName] || Sparkles;
             return (
               <motion.div
                 key={service.id}
@@ -64,44 +48,54 @@ export const Services: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative flex flex-col justify-between bg-[#210308]/90 p-6 rounded-2xl border border-[#D4A84F]/30 hover:border-[#F2C766] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#D4A84F]/20"
+                className="group relative flex flex-col justify-between bg-[#210308]/90 rounded-2xl border border-[#D4A84F]/30 hover:border-[#F2C766] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#D4A84F]/20 overflow-hidden"
               >
                 <div>
-                  {/* Icon Circle */}
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#650D16] to-[#3A0710] border border-[#D4A84F]/40 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:border-[#F2C766] transition-all duration-300">
-                    <IconComponent className="w-7 h-7 text-[#F2C766]" />
+                  {/* Card Thumbnail Image Header */}
+                  <div className="relative h-44 w-full overflow-hidden border-b border-[#D4A84F]/30 bg-[#210308]">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#210308] via-transparent to-transparent opacity-80" />
+                    
+                    {/* Badge */}
+                    <div className="absolute top-3 left-3 bg-[#3A0710]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#D4A84F]/40 text-[10px] font-bold text-[#F2C766] uppercase">
+                      Category
+                    </div>
                   </div>
 
-                  {/* Service Title */}
-                  <h3 className="font-cinzel font-bold text-xl text-[#F2C766] mb-3 group-hover:text-white transition-colors">
-                    {service.title}
-                  </h3>
+                  <div className="p-5">
+                    {/* Service Title */}
+                    <h3 className="font-cinzel font-bold text-lg text-[#F2C766] mb-2 group-hover:text-white transition-colors">
+                      {service.title}
+                    </h3>
 
-                  {/* Short Description */}
-                  <p className="text-sm text-[#FFF8E8]/80 leading-relaxed mb-6">
-                    {service.shortDesc}
-                  </p>
+                    {/* Short Description */}
+                    <p className="text-xs text-[#FFF8E8]/80 leading-relaxed mb-4">
+                      {service.shortDesc}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Card Actions */}
-                <div className="pt-4 border-t border-[#D4A84F]/20 flex items-center justify-between gap-3">
+                <div className="px-5 pb-5 pt-2 flex items-center justify-between gap-2 border-t border-[#D4A84F]/10">
+                  <Link
+                    to={`/services/${service.id}`}
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#F2C766] hover:text-white transition-colors"
+                  >
+                    <span>View Category Page</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+
                   <button
                     onClick={() => setSelectedService(service)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#F2C766] hover:text-white transition-colors focus:outline-none"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-
-                  <a
-                    href={`https://wa.me/919951597968?text=${encodeURIComponent(`Hello Sri Kanaka Durga Devi Astrology, I need consultation regarding ${service.title}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#25D366] hover:text-green-400 transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#25D366] hover:text-green-400 transition-colors focus:outline-none"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-[#25D366]" />
-                    <span>Contact</span>
-                  </a>
+                    <span>Quick Modal</span>
+                  </button>
                 </div>
               </motion.div>
             );

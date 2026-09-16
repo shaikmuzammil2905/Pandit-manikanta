@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { MessageCircle, Menu, X, Phone, ChevronDown, User, Sparkles } from 'lucide-react';
+import { MessageCircle, Menu, X, Phone, ChevronDown, User } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 
 export const Header: React.FC = () => {
@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo Brand using image copy 8.png logo */}
+          {/* Logo Brand */}
           <Link to="/" className="flex items-center gap-3 group focus:outline-none">
             <div className="relative w-11 h-11 sm:w-13 sm:h-13 rounded-full p-0.5 bg-gradient-to-tr from-[#D4A84F] via-[#F2C766] to-[#650D16] shadow-lg group-hover:scale-105 transition-transform duration-300">
               <img
@@ -91,7 +91,7 @@ export const Header: React.FC = () => {
               About
             </button>
 
-            {/* Services Dropdown */}
+            {/* Services Dropdown with Related Thumbnails */}
             <div
               className="relative py-1"
               onMouseEnter={() => setServicesDropdownOpen(true)}
@@ -105,22 +105,37 @@ export const Header: React.FC = () => {
                 <ChevronDown className={`w-4 h-4 text-[#D4A84F] transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu featuring Related Thumbnail Images */}
               {servicesDropdownOpen && (
-                <div className="absolute top-full left-0 w-72 bg-[#3A0710] border-2 border-[#D4A84F]/50 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in duration-200 z-50">
-                  <div className="text-[11px] font-bold text-[#D4A84F] uppercase tracking-wider px-3 py-1 mb-1 border-b border-[#D4A84F]/20">
-                    Astrological Services
+                <div className="absolute top-full left-0 w-80 bg-[#3A0710] border-2 border-[#D4A84F]/60 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in duration-200 z-50">
+                  <div className="text-[11px] font-bold text-[#F2C766] uppercase tracking-wider px-3 py-1.5 mb-1 border-b border-[#D4A84F]/30 flex items-center justify-between">
+                    <span>Astrological Services</span>
+                    <span className="text-[9px] text-[#D4A84F]">Click to view</span>
                   </div>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5 max-h-[75vh] overflow-y-auto pr-1">
                     {servicesData.map((svc) => (
                       <Link
                         key={svc.id}
                         to={`/services/${svc.id}`}
                         onClick={() => setServicesDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#FFF8E8]/90 hover:text-[#F2C766] hover:bg-[#650D16]/60 transition-colors"
+                        className="flex items-center gap-3 px-2.5 py-2 rounded-xl text-xs font-semibold text-[#FFF8E8] hover:text-[#F2C766] hover:bg-[#650D16]/80 border border-transparent hover:border-[#D4A84F]/40 transition-all duration-200 group"
                       >
-                        <Sparkles className="w-3.5 h-3.5 text-[#F2C766] shrink-0" />
-                        <span>{svc.title}</span>
+                        {/* Related Thumbnail Image */}
+                        <div className="w-9 h-9 rounded-lg overflow-hidden border border-[#D4A84F]/50 shrink-0 group-hover:scale-105 transition-transform bg-[#210308]">
+                          <img
+                            src={svc.image}
+                            alt={svc.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="font-semibold text-xs leading-snug group-hover:text-[#F2C766]">
+                            {svc.title}
+                          </span>
+                          <span className="text-[10px] text-[#FFF8E8]/60 font-normal line-clamp-1">
+                            {svc.shortDesc}
+                          </span>
+                        </div>
                       </Link>
                     ))}
                   </div>
@@ -188,7 +203,7 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu with Thumbnails */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#210308]/98 backdrop-blur-2xl border-b border-[#D4A84F]/40 px-5 pt-4 pb-6 shadow-2xl animate-in slide-in-from-top duration-300 max-h-[85vh] overflow-y-auto">
           <div className="flex flex-col gap-3">
@@ -206,7 +221,7 @@ export const Header: React.FC = () => {
               About Us
             </button>
 
-            {/* Mobile Services Accordion */}
+            {/* Mobile Services Accordion with Thumbnails */}
             <div className="border-b border-[#3A0710] py-2">
               <button
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
@@ -217,15 +232,22 @@ export const Header: React.FC = () => {
               </button>
 
               {mobileServicesOpen && (
-                <div className="mt-2 pl-3 flex flex-col gap-2 border-l-2 border-[#D4A84F]">
+                <div className="mt-3 pl-2 flex flex-col gap-2.5 border-l-2 border-[#D4A84F]">
                   {servicesData.map((svc) => (
                     <Link
                       key={svc.id}
                       to={`/services/${svc.id}`}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-sm font-medium text-[#FFF8E8]/85 hover:text-[#F2C766] py-1"
+                      className="flex items-center gap-3 p-1.5 rounded-lg hover:bg-[#3A0710]"
                     >
-                      • {svc.title}
+                      <img
+                        src={svc.image}
+                        alt={svc.title}
+                        className="w-8 h-8 rounded-md object-cover border border-[#D4A84F]"
+                      />
+                      <span className="text-sm font-medium text-[#FFF8E8] hover:text-[#F2C766]">
+                        {svc.title}
+                      </span>
                     </Link>
                   ))}
                 </div>
