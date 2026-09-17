@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -10,8 +11,9 @@ import { AstrologerPage } from './pages/AstrologerPage';
 
 export function App() {
   return (
-    <div className="min-h-screen bg-[#210308] text-[#FFF8E8] relative selection:bg-[#D4A84F] selection:text-[#210308] w-full max-w-[100vw] overflow-x-hidden flex flex-col">
-      <Router>
+    <HelmetProvider>
+      <div className="min-h-screen bg-[#210308] text-[#FFF8E8] relative selection:bg-[#D4A84F] selection:text-[#210308] w-full max-w-[100vw] overflow-x-hidden flex flex-col">
+        <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -23,8 +25,9 @@ export function App() {
           <Route path="/astrologer" element={<AstrologerPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
-      </Router>
-    </div>
+        </Router>
+      </div>
+    </HelmetProvider>
   );
 }
 

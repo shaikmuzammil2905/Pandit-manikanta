@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { FloatingActionButtons } from '../components/FloatingActionButtons';
+import { SEO } from '../components/SEO';
 
 export const AstrologerPage: React.FC = () => {
   const [yearsCount, setYearsCount] = useState(0);
@@ -36,6 +37,12 @@ export const AstrologerPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#210308] text-[#FFF8E8] relative">
+      <SEO 
+        title="Best Astrologer in Hyderabad | Astrologer Manikanta"
+        description="Consult Astrologer Manikanta in Hyderabad. With 15 years of experience, he provides expert guidance and astrological solutions for life's challenges."
+        url="/astrologer"
+        image="https://panditmanikanta.com/assets/pandit-grand.jpg"
+      />
       <Header />
 
       <main className="pt-24 sm:pt-28 pb-16">

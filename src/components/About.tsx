@@ -58,7 +58,7 @@ export const About: React.FC = () => {
 
             {/* Heading */}
             <h2 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#3A0710] mb-6 leading-tight w-full break-words">
-              Guidance for Life's Difficult Moments
+              Astrology Services & Guidance in Hyderabad
             </h2>
 
             {/* Paragraphs */}

@@ -60,8 +60,8 @@ export const Hero: React.FC = () => {
 
           {/* Main Heading */}
           <h1 className="font-cinzel text-2xl font-black text-white leading-tight mb-1 tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            Find Guidance When <br />
-            <span className="gold-gradient-text">Life Feels Uncertain</span>
+            Astrologer in Hyderabad for <br />
+            <span className="gold-gradient-text">Spiritual & Astrology Guidance</span>
           </h1>
 
           {/* Subheading */}
@@ -169,8 +169,8 @@ export const Hero: React.FC = () => {
 
               {/* Main Heading */}
               <h1 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.15] mb-4 tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Find Guidance When <br className="hidden sm:inline" />
-                <span className="gold-gradient-text">Life Feels Uncertain</span>
+                Astrologer in Hyderabad for <br className="hidden sm:inline" />
+                <span className="gold-gradient-text">Spiritual & Astrology Guidance</span>
               </h1>
 
               {/* Subheading */}

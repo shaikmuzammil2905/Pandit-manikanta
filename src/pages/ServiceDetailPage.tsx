@@ -6,6 +6,7 @@ import { servicesData } from '../data/servicesData';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { FloatingActionButtons } from '../components/FloatingActionButtons';
+import { SEO } from '../components/SEO';
 
 export const ServiceDetailPage: React.FC = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
@@ -55,6 +56,12 @@ I would like to schedule a personal consultation.`;
 
   return (
     <div className="min-h-screen bg-[#210308] text-[#FFF8E8] relative">
+      <SEO 
+        title={`${service.title} Astrology Consultation in Hyderabad | Sri Kanaka Durga Devi Astrology`}
+        description={service.shortDesc}
+        url={`/services/${service.id}`}
+        image={`https://panditmanikanta.com${service.image}`}
+      />
       <Header />
 
       <main className="pt-24 sm:pt-28 pb-16">

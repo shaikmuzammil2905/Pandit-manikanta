@@ -29,7 +29,7 @@ export const WhyChooseUs: React.FC = () => {
             </span>
           </div>
           <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3A0710] mb-3">
-            Your Trusted Spiritual Guide
+            Your Trusted Astrologer in Hyderabad
           </h2>
           <p className="text-base sm:text-lg text-[#210308]/80 font-medium">
             Click any pillar to view detailed information & guidance
