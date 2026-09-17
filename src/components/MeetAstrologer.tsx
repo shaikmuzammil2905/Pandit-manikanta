@@ -69,31 +69,31 @@ export const MeetAstrologer: React.FC = () => {
 
           {/* Right Column: Astrologer Profile & Detailed Page Link (lg:col-span-7) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-7 flex flex-col items-start"
+            className="lg:col-span-7 flex flex-col items-start min-w-0 w-full"
           >
             <div className="flex items-center gap-2 text-[#D4A84F] font-bold text-sm uppercase tracking-wider mb-2">
               <Award className="w-5 h-5 text-[#F2C766]" />
               <span>Sri Kanaka Durga Devi Astrology</span>
             </div>
 
-            <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#F2C766] mb-4">
+            <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#F2C766] mb-4 w-full break-words">
               Dedicated Spiritual Guidance for Every Concern
             </h3>
 
-            <p className="text-base sm:text-lg text-[#FFF8E8]/90 mb-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-[#FFF8E8]/90 mb-4 leading-relaxed w-full break-words">
               With <strong>15 years of experience</strong>, the practice is dedicated to helping people who are facing difficulties and seeking personal spiritual and astrological guidance in Hyderabad.
             </p>
 
-            <p className="text-base sm:text-lg text-[#FFF8E8]/90 mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-[#FFF8E8]/90 mb-6 leading-relaxed w-full break-words">
               Every consultation is handled with strict privacy, individual attention, and traditional horoscope principles to help you navigate life's uncertainty.
             </p>
 
             {/* Vision Callout */}
-            <div className="w-full card-dark-glass p-5 rounded-2xl mb-8 border border-[#D4A84F]/50 shadow-inner">
+            <div className="w-full max-w-full card-dark-glass p-4 sm:p-5 rounded-2xl mb-8 border border-[#D4A84F]/50 shadow-inner box-border">
               <span className="text-xs text-[#D4A84F] uppercase tracking-widest font-bold block mb-1">
                 Guiding Principle
               </span>
@@ -103,23 +103,23 @@ export const MeetAstrologer: React.FC = () => {
             </div>
 
             {/* Action Buttons including Dedicated Page Link */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto box-border">
               <Link
                 to="/astrologer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F2C766] via-[#D4A84F] to-[#B8860B] text-[#210308] font-extrabold px-7 py-3.5 rounded-full shadow-lg hover:scale-105 transition-all text-base"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F2C766] via-[#D4A84F] to-[#B8860B] text-[#210308] font-extrabold px-4 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-lg hover:scale-105 transition-all text-sm sm:text-base box-border"
               >
-                <span>View Complete Profile & Stats</span>
-                <ArrowRight className="w-4 h-4 text-[#210308]" />
+                <span className="whitespace-normal text-center">View Complete Profile & Stats</span>
+                <ArrowRight className="w-4 h-4 text-[#210308] shrink-0" />
               </Link>
 
               <a
                 href="https://wa.me/919951597968"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold px-7 py-3.5 rounded-full shadow-lg hover:scale-105 transition-all text-base"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold px-4 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-lg hover:scale-105 transition-all text-sm sm:text-base box-border"
               >
-                <MessageCircle className="w-5 h-5 fill-white" />
-                <span>Speak on WhatsApp</span>
+                <MessageCircle className="w-5 h-5 fill-white shrink-0" />
+                <span className="whitespace-normal text-center">Speak on WhatsApp</span>
               </a>
             </div>
 

@@ -42,11 +42,11 @@ export const About: React.FC = () => {
 
           {/* Right Column: About Narrative (lg:col-span-7) */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+            className="lg:col-span-7 flex flex-col items-start text-left min-w-0 w-full"
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-3">
@@ -57,21 +57,21 @@ export const About: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#3A0710] mb-6 leading-tight">
+            <h2 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#3A0710] mb-6 leading-tight w-full break-words">
               Guidance for Life's Difficult Moments
             </h2>
 
             {/* Paragraphs */}
-            <p className="text-base sm:text-lg text-[#210308]/90 mb-4 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#210308]/90 mb-4 leading-relaxed font-normal w-full break-words">
               Sri Kanaka Durga Devi Astrology is dedicated to helping people who are facing problems in their life. With <strong>15 years of experience</strong>, we provide spiritual and astrological guidance to bring peace, clarity, and positive direction.
             </p>
 
-            <p className="text-base sm:text-lg text-[#210308]/90 mb-6 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#210308]/90 mb-6 leading-relaxed font-normal w-full break-words">
               Whether it's about relationships, health, marriage, career or any other concern, we are here to support you with dedicated and sincere guidance based on traditional astrological principles.
             </p>
 
             {/* Core Vision Banner */}
-            <div className="w-full bg-[#3A0710] text-[#FFF8E8] p-5 sm:p-6 rounded-2xl border-l-4 border-[#D4A84F] mb-8 shadow-lg">
+            <div className="w-full max-w-full bg-[#3A0710] text-[#FFF8E8] p-4 sm:p-6 rounded-2xl border-l-4 border-[#D4A84F] mb-8 shadow-lg box-border">
               <span className="block text-xs uppercase tracking-widest text-[#F2C766] mb-1 font-semibold">
                 Our Core Vision
               </span>
@@ -83,10 +83,10 @@ export const About: React.FC = () => {
             {/* Know More Action */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 bg-[#3A0710] hover:bg-[#650D16] text-[#FFF8E8] font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all text-base group"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#3A0710] hover:bg-[#650D16] text-[#FFF8E8] font-bold px-5 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all text-sm sm:text-base group w-full sm:w-auto box-border"
             >
-              <span>Know More & Connect</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-[#F2C766]" />
+              <span className="whitespace-normal text-center">Know More & Connect</span>
+              <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform text-[#F2C766] shrink-0" />
             </a>
 
           </motion.div>
