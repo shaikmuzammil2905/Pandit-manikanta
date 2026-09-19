@@ -60,7 +60,7 @@ I would like to schedule a personal consultation.`;
         title={`${service.title} Astrology Consultation in Hyderabad | Sri Kanaka Durga Devi Astrology`}
         description={service.shortDesc}
         url={`/services/${service.id}`}
-        image={`https://panditmanikanta.com${service.image}`}
+        image={`https://www.panditmanikanta.com${service.image}`}
       />
       <Header />
 

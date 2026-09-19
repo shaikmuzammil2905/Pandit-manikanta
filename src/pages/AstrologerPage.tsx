@@ -41,7 +41,7 @@ export const AstrologerPage: React.FC = () => {
         title="Best Astrologer in Hyderabad | Astrologer Manikanta"
         description="Consult Astrologer Manikanta in Hyderabad. With 15 years of experience, he provides expert guidance and astrological solutions for life's challenges."
         url="/astrologer"
-        image="https://panditmanikanta.com/assets/pandit-grand.jpg"
+        image="https://www.panditmanikanta.com/assets/pandit-grand.jpg"
       />
       <Header />
 

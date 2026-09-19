@@ -19,8 +19,8 @@ const homeSchema = [
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Sri Kanaka Durga Devi Astrology",
-    "image": "https://panditmanikanta.com/assets/hero-bg.jpg",
-    "url": "https://panditmanikanta.com",
+    "image": "https://www.panditmanikanta.com/assets/hero-bg.jpg",
+    "url": "https://www.panditmanikanta.com",
     "telephone": "+919951597968",
     "address": {
       "@type": "PostalAddress",
@@ -35,8 +35,8 @@ const homeSchema = [
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Astrologer Manikanta",
-    "url": "https://panditmanikanta.com/astrologer",
-    "image": "https://panditmanikanta.com/assets/pandit-grand.jpg",
+    "url": "https://www.panditmanikanta.com/astrologer",
+    "image": "https://www.panditmanikanta.com/assets/pandit-grand.jpg",
     "jobTitle": "Astrologer",
     "worksFor": {
       "@type": "Organization",

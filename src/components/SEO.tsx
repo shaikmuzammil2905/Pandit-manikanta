@@ -14,13 +14,13 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({ 
   title, 
   description, 
-  url = 'https://panditmanikanta.com', 
-  image = 'https://panditmanikanta.com/assets/pandit-portrait.jpg',
+  url = 'https://www.panditmanikanta.com', 
+  image = 'https://www.panditmanikanta.com/assets/pandit-portrait.jpg',
   type = 'website',
   schema,
   canonicalUrl
 }) => {
-  const fullUrl = url.startsWith('http') ? url : `https://panditmanikanta.com${url}`;
+  const fullUrl = url.startsWith('http') ? url : `https://www.panditmanikanta.com${url}`;
   const canonical = canonicalUrl || fullUrl;
 
   return (

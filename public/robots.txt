@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://panditmanikanta.com/sitemap.xml
+Sitemap: https://www.panditmanikanta.com/sitemap.xml
